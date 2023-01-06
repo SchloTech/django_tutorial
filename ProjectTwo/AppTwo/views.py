@@ -1,5 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
 
 def index(request):
-    return HttpResponse('<em>My Second App</em>')
+    return render('<em>My Second App</em>')
+
+
+def help(request):
+    views = {
+        'help_tag': "Help Page!"
+    }
+
+    return render(request, 'projectTwo/help.html', context=views)
