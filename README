@@ -1,0 +1,4 @@
+docker build -t django_app .
+docker run -p 8000:8000 django_app
+
+navigate to 127.0.0.1:8000 to see the django app running in the container
