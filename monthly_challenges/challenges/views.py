@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, response
 
 monthly_challenges = {
     "january": "This is the January Challenge!",
@@ -37,6 +37,7 @@ def monthly_challenge(request, month):
 
     try:
         challenge_text = monthly_challenges[month]
-        return HttpResponse(challenge_text)
+        response_data = f"<h1>{challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("No month by that name found, check spelling")
+        return HttpResponseNotFound("<h1>No month by that name found, check spelling</h1>")
