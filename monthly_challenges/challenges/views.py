@@ -1,20 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, response
 from django.urls import reverse
+# from django.template.loader import render_to_string
 
 monthly_challenges = {
-    "january": "This is the January Challenge!",
-    "february": "This is the February Challenge!",
-    "march": "This is the March Challenge!",
-    "april": "This is the April Challenge!",
-    "may": "This is the May Challenge!",
-    "june": "This is the June Challenge!",
-    "july": "This is the July Challenge!",
-    "august": "This is the August Challenge!",
-    "september": "This is the September Challenge!",
-    "october": "This is the October Challenge!",
-    "november": "This is the November Challenge!",
-    "december": "This is the December Challenge!",
+    "january": "This is the January's Challenge!",
+    "february": "This is the February's Challenge!",
+    "march": "This is the March's Challenge!",
+    "april": "This is the April's Challenge!",
+    "may": "This is the May's Challenge!",
+    "june": "This is the June's Challenge!",
+    "july": "This is the July's Challenge!",
+    "august": "This is the August's Challenge!",
+    "september": "This is the September's Challenge!",
+    "october": "This is the October's Challenge!",
+    "november": "This is the November's Challenge!",
+    "december": "This is the December's Challenge!",
 }
 
 # Create your views here.
@@ -48,7 +49,11 @@ def monthly_challenge(request, month):
 
     try:
         challenge_text = monthly_challenges[month]
-        response_data = f"<h1>{challenge_text}</h1>"
-        return HttpResponse(response_data)
+        # response_data = render_to_string("challenges/challenge.html")
+        # return HttpResponse(response_data)
+        return render(request, "challenges/challenge.html", {
+            "text": challenge_text,
+            "month": month.capitalize()
+        })
     except:
         return HttpResponseNotFound("<h1>No month by that name found, check spelling</h1>")

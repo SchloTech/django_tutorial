@@ -5,6 +5,6 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     # command: ls -l
     volumes:
-      - ~/repos/personal/django_tutorial:/app
+      - .:/app
     ports:
       - "8000:8000"
