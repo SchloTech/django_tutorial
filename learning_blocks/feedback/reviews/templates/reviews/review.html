@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Your Review</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    {% comment %} leaveing specific html attributes for note taking purposes {% endcomment %}
+    <body>
+        {% comment %} You don't need to set the action it's "/" by default {% endcomment %}
+        <form action="/" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            {% comment %} button type is submit by default {% endcomment %}
+            <button type="submit">Send</button>
+        </form>
+    </body>
+</html>
