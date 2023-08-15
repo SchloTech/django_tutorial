@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,14 +8,20 @@
         <title>Your Review</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static "/reviews/styles.css" %}">
     </head>
     {% comment %} leaveing specific html attributes for note taking purposes {% endcomment %}
     <body>
         {% comment %} You don't need to set the action it's "/" by default {% endcomment %}
         <form action="/" method="POST">
             {% csrf_token %}
-            {{ form }}
+            {% for field in form %}
+                <div class="form-control {% if field.errors %} errors {% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
             {% comment %} button type is submit by default {% endcomment %}
             <button type="submit">Send</button>
         </form>
